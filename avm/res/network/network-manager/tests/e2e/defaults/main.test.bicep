@@ -9,7 +9,7 @@ metadata description = 'This instance deploys the module with the minimum set of
 
 @description('Optional. The name of the resource group to deploy for testing purposes.')
 @maxLength(90)
-param resourceGroupName string = 'dep-${namePrefix}-network.networkmanagers-${serviceShort}-rg-002'
+param resourceGroupName string = 'dep-${namePrefix}-network.networkmanagers-${serviceShort}-rg-003'
 
 @description('Optional. The location to deploy resources to.')
 param resourceLocation string = deployment().location
@@ -41,7 +41,7 @@ module testDeployment '../../../main.bicep' = [
     scope: resourceGroup
     name: '${uniqueString(deployment().name, resourceLocation)}-test-${serviceShort}-${iteration}'
     params: {
-      name: '${namePrefix}${serviceShort}002'
+      name: '${namePrefix}${serviceShort}003'
       location: resourceLocation
       networkManagerScopeAccesses: [
         'Connectivity'
