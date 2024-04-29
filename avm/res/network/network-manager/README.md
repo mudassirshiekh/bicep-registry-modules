@@ -53,7 +53,7 @@ module networkManager 'br/public:avm/res/network/network-manager:<version>' = {
   name: 'networkManagerDeployment'
   params: {
     // Required parameters
-    name: 'nnmmin001'
+    name: 'nnmmin002'
     networkManagerScopeAccesses: [
       'Connectivity'
     ]
@@ -82,7 +82,7 @@ module networkManager 'br/public:avm/res/network/network-manager:<version>' = {
   "parameters": {
     // Required parameters
     "name": {
-      "value": "nnmmin001"
+      "value": "nnmmin002"
     },
     "networkManagerScopeAccesses": {
       "value": [
