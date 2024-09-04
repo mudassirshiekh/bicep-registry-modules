@@ -189,7 +189,7 @@ module testDeployment '../../../main.bicep' = [
       requireInfrastructureEncryption: true
       vnetAddressPrefix: '10.100'
       defaultCatalog: {
-        initialName: 'defaultCatalog'
+        initialName: ''
         initialType: 'UnityCatalog'
       }
     }
