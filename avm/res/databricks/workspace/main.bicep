@@ -113,6 +113,9 @@ param storageAccountPrivateEndpoints privateEndpointType
 @description('Conditional. The resource ID of the associated access connector for private access to the managed workspace storage account. Required if privateStorageAccount is enabled.')
 param accessConnectorResourceId string = ''
 
+@description('Optional. The default catalog configuration for the Databricks workspace.')
+param defaultCatalog defaultCatalogType?
+
 var builtInRoleNames = {
   Contributor: subscriptionResourceId('Microsoft.Authorization/roleDefinitions', 'b24988ac-6180-42a0-ab88-20f7382dd24c')
   Owner: subscriptionResourceId('Microsoft.Authorization/roleDefinitions', '8e3af657-a8ff-443c-a75c-2fe8c4bcb635')
@@ -191,6 +194,7 @@ resource workspace 'Microsoft.Databricks/workspaces@2024-05-01' = {
   // This union is required because the defaultStorageFirewall property is optional and cannot be null or ''
   properties: union(
     {
+      defaultCatalog: defaultCatalog
       managedResourceGroupId: !empty(managedResourceGroupResourceId)
         ? managedResourceGroupResourceId
         : '${subscription().id}/resourceGroups/rg-${name}-managed'
@@ -740,3 +744,8 @@ type diagnosticSettingType = {
   @description('Optional. The full ARM resource ID of the Marketplace resource to which you would like to send Diagnostic Logs.')
   marketplacePartnerResourceId: string?
 }[]?
+
+type defaultCatalogType = {
+  initialName: string
+  initialType: 'HiveMetastore' | 'UnityCatalog'
+}

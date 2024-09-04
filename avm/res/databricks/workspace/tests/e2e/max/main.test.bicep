@@ -188,6 +188,10 @@ module testDeployment '../../../main.bicep' = [
       managedResourceGroupResourceId: '${subscription().id}/resourceGroups/rg-${resourceGroupName}-managed'
       requireInfrastructureEncryption: true
       vnetAddressPrefix: '10.100'
+      defaultCatalog: {
+        initialName: 'defaultCatalog'
+        initialType: 'UnityCatalog'
+      }
     }
     dependsOn: [
       nestedDependencies
