@@ -8,7 +8,6 @@
 /avm/ptn/authorization/policy-assignment/ @Azure/avm-ptn-authorization-policyassignment-module-owners-bicep @Azure/avm-module-reviewers-bicep
 /avm/ptn/authorization/resource-role-assignment/ @Azure/avm-ptn-authorization-resourceroleassignment-module-owners-bicep @Azure/avm-module-reviewers-bicep
 /avm/ptn/authorization/role-assignment/ @Azure/avm-ptn-authorization-roleassignment-module-owners-bicep @Azure/avm-module-reviewers-bicep
-/avm/ptn/authorization/subscription-role-assignment/ @Azure/avm-ptn-authorization-subscriptionroleassignment-module-owners-bicep @Azure/avm-module-reviewers-bicep
 #/avm/ptn/avd-lza/insights/ @Azure/avm-ptn-avd-lza-insights-module-owners-bicep @Azure/avm-module-reviewers-bicep
 #/avm/ptn/avd-lza/management-plane/ @Azure/avm-ptn-avd-lza-managementplane-module-owners-bicep @Azure/avm-module-reviewers-bicep
 #/avm/ptn/avd-lza/networking/ @Azure/avm-ptn-avd-lza-networking-module-owners-bicep @Azure/avm-module-reviewers-bicep
@@ -63,6 +62,7 @@
 /avm/res/desktop-virtualization/host-pool/ @Azure/avm-res-desktopvirtualization-hostpool-module-owners-bicep @Azure/avm-module-reviewers-bicep
 /avm/res/desktop-virtualization/scaling-plan/ @Azure/avm-res-desktopvirtualization-scalingplan-module-owners-bicep @Azure/avm-module-reviewers-bicep
 /avm/res/desktop-virtualization/workspace/ @Azure/avm-res-desktopvirtualization-workspace-module-owners-bicep @Azure/avm-module-reviewers-bicep
+/avm/res/dev-ops-infrastructure/pool/ @Azure/avm-res-devopsinfrastructure-pool-module-owners-bicep @Azure/avm-module-reviewers-bicep
 /avm/res/dev-test-lab/lab/ @Azure/avm-res-devtestlab-lab-module-owners-bicep @Azure/avm-module-reviewers-bicep
 /avm/res/digital-twins/digital-twins-instance/ @Azure/avm-res-digitaltwins-digitaltwinsinstance-module-owners-bicep @Azure/avm-module-reviewers-bicep
 /avm/res/document-db/database-account/ @Azure/avm-res-documentdb-databaseaccount-module-owners-bicep @Azure/avm-module-reviewers-bicep
