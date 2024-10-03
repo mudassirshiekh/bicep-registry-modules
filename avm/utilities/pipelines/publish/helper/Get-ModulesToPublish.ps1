@@ -17,9 +17,13 @@ Get modified files between previous and current commit depending on if you are r
 #>
 function Get-ModifiedFileList {
 
+    Write-Verbose 'Gathering modified files from the previous head' -Verbose
     if ((Get-GitBranchName) -eq 'main') {
-        Write-Verbose 'Gathering modified files from the previous head' -Verbose
+        # in main
         $Diff = git diff --name-only --diff-filter=AM HEAD^ HEAD
+    } else {
+        # in branch
+        $Diff = git diff --name-only --diff-filter=AM HEAD^
     }
     $ModifiedFiles = $Diff ? ($Diff | Get-Item -Force) : @()
 
@@ -81,12 +85,12 @@ function Get-TemplateFileToPublish {
         [string] $ModuleFolderPath,
 
         [Parameter(Mandatory)]
-        [string[]] $PathsToInclude = @()
+        [string[]] $PathsToInclude
     )
 
     $ModuleRelativeFolderPath = (($ModuleFolderPath -split '[\/|\\](avm)[\/|\\](res|ptn|utl)[\/|\\]')[-3..-1] -join '/') -replace '\\', '/'
-    $ModifiedFiles = Get-ModifiedFileList -Verbose
-    Write-Verbose "Looking for modified files under: [$ModuleRelativeFolderPath]" -Verbose
+    $ModifiedFiles = Get-ModifiedFileList
+    Write-Verbose "Looking for modified files under: [$ModuleRelativeFolderPath]"
     $modifiedModuleFiles = $ModifiedFiles.FullName | Where-Object { $_ -like "*$ModuleFolderPath*" }
 
     $relevantPaths = @()
@@ -101,18 +105,18 @@ function Get-TemplateFileToPublish {
     }
 
     $TemplateFilesToPublish = $relevantPaths | ForEach-Object {
-        Find-TemplateFile -Path $_ -Verbose
+        Find-TemplateFile -Path $_
     } | Sort-Object -Culture 'en-US' -Unique -Descending
 
     if ($TemplateFilesToPublish.Count -eq 0) {
-        Write-Verbose 'No template file found in the modified module.' -Verbose
+        Write-Verbose 'No template file found in the modified module.'
     }
 
-    Write-Verbose ('Modified modules found: [{0}]' -f $TemplateFilesToPublish.count) -Verbose
+    Write-Verbose ('Modified modules found: [{0}]' -f $TemplateFilesToPublish.count)
     $TemplateFilesToPublish | ForEach-Object {
         $RelPath = (($_ -split '[\/|\\](avm)[\/|\\](res|ptn|utl)[\/|\\]')[-3..-1] -join '/') -replace '\\', '/'
         $RelPath = $RelPath.Split('/main.')[0]
-        Write-Verbose " - [$RelPath]" -Verbose
+        Write-Verbose " - [$RelPath]"
     }
 
     return $TemplateFilesToPublish
@@ -149,7 +153,7 @@ function Find-TemplateFile {
 
     $FolderPath = Split-Path $Path -Parent
     $FolderName = Split-Path $Path -Leaf
-    if ($FolderName -eq 'modules') {
+    if ($FolderName -eq 'avm') {
         return $null
     }
 
