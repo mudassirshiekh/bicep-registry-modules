@@ -16,6 +16,7 @@ For the list of available and planned AVM modules, please visit the [AVM Module 
 This repo contains the source code of all currently available Bicep modules in the Bicep public module registry (i.e., all AVM Bicep modules).
 
 ## Available Modules
+# By Mudassir Alam
 
 To view all available AVM Bicep modules, go to AVM Bicep Module Index ([https://aka.ms/AVM/ModuleIndex/Bicep](https://aka.ms/AVM/ModuleIndex/Bicep)).
 
